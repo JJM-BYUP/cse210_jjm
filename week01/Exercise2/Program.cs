@@ -11,7 +11,7 @@ class Program
 
         if (gradePercentage >= 90)
         {
-            letter ="A";
+            letter = "A";
         }
         else if (gradePercentage < 90 && gradePercentage >= 80)
         {
