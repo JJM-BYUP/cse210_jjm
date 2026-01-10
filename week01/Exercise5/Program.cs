@@ -34,6 +34,7 @@ class Program
     // Call functions and DisplayResult (main)
     static void Main(string[] args)
     {
+        DisplayWelcome();
         string userName = PromptUserName();
         float userNum = PromptUserNumber();
         float sqrNum = SquareNumber(userNum);
