@@ -18,7 +18,10 @@ class Program
             Console.Write("Enter number: ");
             userNum = int.Parse(Console.ReadLine());
 
-            numbers.Add(userNum);
+            if (userNum != 0)
+            {
+                numbers.Add(userNum);
+            }
         }
 
         // Core requirement 1 compute sum/total of all the numbers in the list
@@ -30,7 +33,7 @@ class Program
         // Core requirement 2 Compute the average of the numbers in the list (not counting the ending 0)
         float totalFloat = (float)total;
         float numCount = numbers.Count;
-        average = totalFloat / (numCount - 1);
+        average = totalFloat / (numCount);
 
         // Core requirement 3 Find the largest number in the list
 
@@ -43,6 +46,7 @@ class Program
             }
         }
 
+        // Display results
         Console.WriteLine($"The sum is {total}");
         Console.WriteLine($"The average is {average}");
         Console.WriteLine($"The largest number is {maxNum}");
