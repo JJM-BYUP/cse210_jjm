@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 
 public class Reference
 {
@@ -7,19 +8,28 @@ public class Reference
     private int _verse;
     private int _endVerse;
 
-    public Reference(string book, int chapter, int verse)
+    public Reference(string book, int chapter, int startVerse, int endVerse = 0)
     {
-
-    }
-
-    public Reference(string book, int chapter, int startVerse, int endVerse)
-    {
-
+        //Ephesians 4:32 or Isaian 12:1-6
+        _book = book;
+        _chapter = chapter;
+        _verse = startVerse;
+        _endVerse = endVerse;
     }
     
-    string GetDisplayText()
+    public string GetDisplayText()
     {
-        return "";
+        string singleVerse = $"{_book} {_chapter}:{_verse}";
+        string multiVerse = $"{_book} {_chapter}:{_verse}-{_endVerse}";
+
+        if (_endVerse < 1)
+        {
+            return singleVerse;
+        }
+        else
+        {
+            return multiVerse;
+        }
     }
 
 }
