@@ -1,28 +1,75 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 class Scripture
 {
-    private Reference _reference = new Reference("John", 3, 16);
-    private List<Word> _words = new List<Word>();
+    private string _reference;
+    private List<string> _words = new List<string>();
+    private string _text;
 
-    public Scripture(Reference Reference, string text)
+    public Scripture(string reference, string text)
     {
+        _reference = reference;
+        _text = text;
 
+        // Split string text
+        char separator = ' ';
+        string[] verseArray = _text.Split(separator, StringSplitOptions.RemoveEmptyEntries); 
+        _words.AddRange(verseArray);
     }
 
     public void HideRandomWords(int numberToHide)
     {
+        // Randomize numberToHide to hide the number of words by their index numbers
+        // Use a for loop to iterate through List by index?
+        foreach (var line in RandomWordsHide(_words))
+        {
+            _text = string.Join(" ", line);
+        }
 
+        
+        IEnumerable<List<string>> RandomWordsHide(List<string> words)
+        {
+            List<int> randomIndexes = Enumerable.Range(0, words.Count).OrderBy(x => Random.Shared.Next()).ToList();
+
+            int hiddenNum = numberToHide;
+
+            while (true)
+            {
+                yield return
+                    words
+                        .Select((word, index) =>
+                            randomIndexes
+                                .Take(hiddenNum)
+                                .Contains(index)
+                                    ? Regex.Replace(word, "[a-zA-Z]", "_")
+                                    : word)
+                        .ToList();
+
+                if (words.Count == hiddenNum)
+
+                    yield break;
+
+                hiddenNum += Random.Shared.Next(1, words.Count - hiddenNum);
+
+            }
+
+        }
+            
     }
 
     public string GetDisplayText()
     {
-        return "";
+        string scripture = $"{_reference} {_text}";
+        return scripture;
+
     }
 
     public bool IsCompletelyHidden()
     {
+        // Use to exit the program
         return true;
     }
 
