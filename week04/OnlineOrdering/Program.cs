@@ -14,9 +14,6 @@ class Program
 
 
         // ORDER 1:
-
-
-
         Address address1 = new Address("225 Wishing Way", "Nowhere", "Ohio", "USA");
         string wholeAddress = address1.WholeAddress();
         bool inUSA1 = address1.AddressInUSA();
@@ -24,17 +21,14 @@ class Program
 
         //Customer customer1 = new Customer("Bob T Builder", wholeAddress);
 
+        Product product1 = new Product("Air Compressor", 12345678, 279.56m, 2);
+        decimal total1 = product1.TotalCost();
+        Console.WriteLine(total1);
 
-        // string product1 = "air compressor";
-        // int productID1 = 12345678;
-        // decimal priceEa1 = 279.56m;
-        // int quantity1 = 1;
+        Product product2 = new Product("Torque Wrench", 09876543, 22.85m, 6);
+        decimal total2 = product2.TotalCost();
+        Console.WriteLine(total2);
 
-
-        // string product2 = "torque wrench";
-        // int productID2 = 09876543;
-        // decimal priceEa2 = 22.85m;
-        // int quantity2 = 2;
 
 
         // // ORDER 2:
@@ -45,32 +39,33 @@ class Program
 
         // string name2 = "Bulwinkle J Moose";
 
-        // string product3 = "Mooseberries";
-        // int productID3 = 26497513;
-        // decimal priceEa3 = 5.45m;
-        // int quantity3 = 3;
+        Product product3 = new Product("Mooseberries", 26497513, 5.45m, 3);
+        decimal total3 = product3.TotalCost();
+        Console.WriteLine(total3);
 
+        Product product4 = new Product("Academia Nuts", 79431658, 12.64m, 5);
+        decimal total4 = product4.TotalCost();
+        Console.WriteLine(total4);
 
-        // string product4 = "Academia Nuts";
-        // int productID4 = 79431658;
-        // decimal priceEa4 = 12.64m;
-        // int quantity4 = 2;
+        Product product5 = new Product("Hot Chocolate", 56489125, 8.95m, 4);
+        decimal total5 = product5.TotalCost();
+        Console.WriteLine(total5);
 
 
         // // PROGRAM METHODS:
         // static string PackingLabel()
         // {
-            // return "";
+        // return "";
         // }
 
         // static string ShippingLabel()
         // {
-            // return "";
+        // return "";
         // }
 
         // static decimal TotalPrice()
         // {
-            // return 0;
+        // return 0;
         // }
 
 
