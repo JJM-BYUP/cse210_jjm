@@ -39,11 +39,11 @@ class Program
             // Clear the console
             Console.Clear();
             
-            if (userInput == "")
-            {
+           // if (userInput == "")
+            //{
                 // Print Scripture reference and text with missing words    
-                scripture1.HideRandomWords(2);
-            }
+               // scripture1.HideRandomWords(2);
+           // }
             
             string displayScript = scripture1.GetDisplayText();
             Console.WriteLine(displayScript);
