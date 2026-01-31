@@ -60,7 +60,6 @@ public class Address
         {
             return false;
         }
-
     }
 
     public string WholeAddress()

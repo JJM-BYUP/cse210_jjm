@@ -2,7 +2,6 @@ using System;
 
 public class Order
 {
-
     private Product _product1;
     private Product _product2;
     private Product _product3;
@@ -19,12 +18,48 @@ public class Order
         _customer = customer;
     }
 
+    // Getters/Setters
+    public Product Product1
+    {
+        get { return _product1; }
+        set { _product1 = value; }
+    }
+    public Product Product2
+    {
+        get { return _product2; }
+        set { _product2 = value; }
+    }
+    public Product Product3
+    {
+        get { return _product3; }
+        set { _product3 = value; }
+    }
+    public Customer Customer
+    {
+        get { return _customer; }
+        set { _customer = value; }
+    }
+
     // Methods
-    public List<Product> _products = new List<Product>();
+    private List<string> _products = new List<string>();
     public void AddProducts()
     {
-        _products.Add(new Product(_product1));
-        
+        _products.Add($"ITEM: {Product1.ProductName} . . . . ID#: {Product1.ProductID}\n   PRICE PER EACH: {Product1.ProductPriceEa} . . . ITEM QUANTITY: {Product1.ProductQuant}");
+        _products.Add($"ITEM: {Product2.ProductName} . . . . ID#: {Product2.ProductID}\n   PRICE PER EACH: {Product2.ProductPriceEa} . . . ITEM QUANTITY: {Product2.ProductQuant}");
+        _products.Add($"ITEM: {Product3.ProductName} . . . . ID#: {Product3.ProductID}\n   PRICE PER EACH: {Product3.ProductPriceEa} . . . ITEM QUANTITY: {Product3.ProductQuant}");
+    }
+
+    public void PackingLabel()
+    {
+        Console.WriteLine("***********************************************");
+        Console.WriteLine("PACKING LABEL");
+        Console.WriteLine("***********************************************");
+        AddProducts();
+        foreach (string p in _products)
+        {
+            Console.WriteLine(p.ToString());
+        }
+        Console.WriteLine("________________________________________________");
     }
 
     public decimal USShipping()
@@ -52,42 +87,16 @@ public class Order
         decimal itemsCost = _product1.TotalItemsCost();
         decimal itemsCost2 = _product2.TotalItemsCost();
         decimal itemsCost3 = _product3.TotalItemsCost();
-        
+
         decimal allItemsCost = itemsCost + itemsCost2 + itemsCost3;
         decimal shipping = USShipping();
         decimal totalCost = allItemsCost + shipping;
 
         Console.WriteLine($"Subotal for all items ordered:          ${allItemsCost}");
         Console.WriteLine($"Shipping cost:                          $ {shipping}");
-        Console.WriteLine("________________________________________________");
         Console.WriteLine("TOTAL COST");
         Console.WriteLine($"Total cost of order:                    ${totalCost}");
         Console.WriteLine();
-    }
-
-    public void PackingLabel()
-    {
-        string productName = _product1.ProductName;
-        int productId = _product1.ProductID;
-        int howMany = _product1.ProductQuant;
-        decimal priceEa = _product1.ProductPriceEa;
-        string productName2 = _product2.ProductName;
-        int productId2 = _product2.ProductID;
-        int howMany2 = _product2.ProductQuant;
-        decimal priceEa2 = _product2.ProductPriceEa;
-
-        Console.WriteLine("***********************************************");
-        Console.WriteLine("PACKING LABEL");
-        Console.WriteLine("***********************************************");
-        Console.WriteLine($"{productName} . . . . . . . . . . {productId}");
-        Console.WriteLine($"Number of items:                   {howMany}");
-        Console.WriteLine($"Price for each:                    ${priceEa}");
-        Console.WriteLine();
-        Console.WriteLine($"{productName2} . . . . . . . . . . {productId2}");
-        Console.WriteLine($"Number of items:                   {howMany2}");
-        Console.WriteLine($"Price for each:                    ${priceEa2}");
-        Console.WriteLine();
-        Console.WriteLine("________________________________________________");
     }
 
     public void ShippingLabel()
@@ -98,9 +107,7 @@ public class Order
         Console.WriteLine("******************");
         Console.WriteLine("SHIPPING LABEL:");
         Console.WriteLine("******************");
-        Console.WriteLine();
         Console.WriteLine(custName);
         Console.WriteLine(address);
-        Console.WriteLine();
     }
 }

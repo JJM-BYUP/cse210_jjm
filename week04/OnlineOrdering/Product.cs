@@ -40,10 +40,11 @@ public class Product
         get { return _productQuant; }
         set { _productQuant = value; }
     }
-    
+
     public decimal TotalItemsCost()
     {
         decimal total = ProductPriceEa * ProductQuant;
         return total;
     }
+
 }
