@@ -5,21 +5,28 @@ public class Order
 
     private Product _product1;
     private Product _product2;
+    private Product _product3;
     private Customer _customer;
     private decimal _shippingUSA = 5.00m;
     private decimal _shippingNotUSA = 35.00m;
 
-    public List<Product> _products = new List<Product>();
-
     // Constructors
-    public Order(Product product1, Product product2, Customer customer)
+    public Order(Product product1, Product product2, Product product3, Customer customer)
     {
         _product1 = product1;
         _product2 = product2;
+        _product3 = product3;
         _customer = customer;
     }
 
     // Methods
+    public List<Product> _products = new List<Product>();
+    public void AddProducts()
+    {
+        _products.Add(new Product(_product1));
+        
+    }
+
     public decimal USShipping()
     {
         bool inUS = _customer.GetInUSA();
@@ -44,7 +51,9 @@ public class Order
         // Return total cost of order: (TotaItemCost() for each item added together for a total) + shipping
         decimal itemsCost = _product1.TotalItemsCost();
         decimal itemsCost2 = _product2.TotalItemsCost();
-        decimal allItemsCost = itemsCost + itemsCost2;
+        decimal itemsCost3 = _product3.TotalItemsCost();
+        
+        decimal allItemsCost = itemsCost + itemsCost2 + itemsCost3;
         decimal shipping = USShipping();
         decimal totalCost = allItemsCost + shipping;
 
