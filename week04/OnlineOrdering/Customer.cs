@@ -6,34 +6,30 @@ using System.Runtime.CompilerServices;
 public class Customer
 {
     private string _customerName;
-    private string _customerAddress;
+    private Address _address;
 
-    public Customer()
+    // Constructor
+    public Customer(string _customerName, Address address)
     {
-        _customerName = "Unknown";
-        _customerAddress = "No Where";
+        CustomerName = _customerName;
+        _address = address;
     }
 
-    public Customer(string name, string address) 
+    // Getters/Setters
+    public string CustomerName
     {
-        _customerName = name;
-        //Address address = new Address( street, city, stateProv, country);
-        _customerAddress = address;
+        get { return _customerName; }
+        set { _customerName = value; }
     }
 
+    // Methods
+    public string GetAddress()
+    {
+        return _address.WholeAddress();
+    }
 
-    // public string custAddress()
-    // {
-        // Address fullAddress = new Address();
-        // string cAddress = fullAddress.WholeAddress();
-        // return cAddress;
-    // }
-
-    
-    // public bool LivesInUSA()
-    // {
-    // Address inUSA = new Address();
-    // bool doThey = inUSA.AddressInUSA();
-    // return doThey;
-    // }
+    public bool GetInUSA()
+    {
+        return _address.AddressInUSA();
+    }
 }

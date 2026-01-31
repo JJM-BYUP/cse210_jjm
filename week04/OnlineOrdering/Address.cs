@@ -7,25 +7,52 @@ public class Address
     private string _stateOrProv;
     private string _country;
 
+    // Constructors
     public Address()
     {
-        _street = "";
-        _city = "";
-        _stateOrProv = "";
-        _country = "";
-    }
-    
-    public Address(string street, string city, string stateProv, string country)
-    {
-        _street = street;
-        _city = city;
-        _stateOrProv = stateProv;
-        _country = country;
+        Street = "";
+        City = "";
+        StateOrProv = "";
+        Country = "";
     }
 
+    public Address(string _street, string _city, string _stateOrProv, string _country)
+    {
+        Street = _street;
+        City = _city;
+        StateOrProv = _stateOrProv;
+        Country = _country;
+    }
+
+    // Getters/Setters
+    public string Street
+    {
+        get { return _street; }
+        set { _street = value; }
+    }
+
+    public string City
+    {
+        get { return _city; }
+        set { _city = value; }
+    }
+
+    public string StateOrProv
+    {
+        get { return _stateOrProv; }
+        set { _stateOrProv = value; }
+    }
+
+    public string Country
+    {
+        get { return _country; }
+        set { _country = value; }
+    }
+
+    // Methods
     public bool AddressInUSA()
     {
-        if (_country == "USA")
+        if (Country == "USA")
         {
             return true;
         }
@@ -38,8 +65,7 @@ public class Address
 
     public string WholeAddress()
     {
-        string completeAddress = $"{_street}\n{_city}\n{_stateOrProv}\n{_country}";
-        Console.WriteLine(completeAddress);
+        string completeAddress = $"{Street}\n{City}, {StateOrProv},{Country}";   
         return completeAddress;
     }
 
