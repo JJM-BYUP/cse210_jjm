@@ -12,7 +12,6 @@ class Program
                     product name, product ID#, price for each, quantity
         */
 
-
         // ORDER 1:
         Product product1a = new Product("Air Compressor", 12345678, 279.56m, 2);
         Product product1b = new Product("Torque Wrench", 09876543, 22.85m, 6);
@@ -26,25 +25,31 @@ class Program
         Console.WriteLine();
         order1.PackingLabel();
         order1.TotalOrderCost();
+        Console.WriteLine();
+        Console.WriteLine();
 
-        // // ORDER 2:
-        // Address address2 = new Address("692 World's End", "Frostbite Falls", "Manitoba", "Canada");
-        // Customer customer2 = new Customer("Bulwinkle J Moose", address2);
 
-        // Product product2a = new Product("Mooseberries", 26497513, 5.45m, 3);
-        // decimal total2b = product3.TotalCost();
-        // Console.WriteLine(total3);
+        // ORDER 2:
+        Product product2a = new Product("Mooseberries", 26497513, 5.45m, 3);
+        Product product2b = new Product("Academia Nuts", 79431658, 12.64m, 5);
 
-        // Product product4 = new Product("Academia Nuts", 79431658, 12.64m, 5);
-        // decimal total4 = product4.TotalCost();
-        // Console.WriteLine(total4);
+        Address address2 = new Address("692 World's End", "Frostbite Falls", "Manitoba", "Canada");
+        Customer customer2 = new Customer("Bulwinkle J Moose", address2);
+
+        Order order2 = new Order(product2a, product2b, customer2);
+        order2.ShippingLabel();
+        Console.WriteLine();
+        Console.WriteLine();
+        order2.PackingLabel();
+        order2.TotalOrderCost();
+        Console.WriteLine();
+        Console.WriteLine();
+
 
         // Product product5 = new Product("Hot Chocolate", 56489125, 8.95m, 4);
         // decimal total5 = product5.TotalCost();
         // Console.WriteLine(total5);
 
-        // Order order2 = new Order(customer2, total1);
-        // order2.ShippingLabel();
 
     }
 
