@@ -12,7 +12,7 @@ public class Comment
         CommenterName = _commenterName;
         CommentText = _commentText;
     }
-    
+
     // Getters/Setters
     public string CommenterName
     {

@@ -15,14 +15,14 @@ public class Video
     private Comment _vidComment1c;
 
     // Constructor
-    public Video(string _title, string _author, int _length, Comment vidComment1a, Comment vidComment1b, Comment vidComment1c)  
+    public Video(string _title, string _author, int _length, Comment vidComment1a, Comment vidComment1b, Comment vidComment1c)
     {
         Title = _title;
         Author = _author;
         Length = _length;
         _vidComment1a = vidComment1a;
         _vidComment1b = vidComment1b;
-        _vidComment1c= vidComment1c;
+        _vidComment1c = vidComment1c;
     }
 
     // Getters/Setters
@@ -87,9 +87,7 @@ public class Video
         foreach (string vCom in _comments)
         {
             Console.WriteLine(vCom);
-            Console.WriteLine();
         }
-        
     }
 
     public int NumOfComments()
@@ -99,19 +97,9 @@ public class Video
         return comLength;
     }
 
-    public void DisplayVidInfo()
+    public override string ToString()
     {
-        /*  For each video display:
-                title, author, length, number of comments (from method), list
-                all comments for that video - USE NumOfComments(); for iteration
-        */
-
-        Console.WriteLine("**************************************************");
-        string vidInfo = $"VIDEO: {_title}\nPOSTED BY: {_author}\nVIDEO LENGTH (in seconds): {_length}";
-        Console.WriteLine(vidInfo);
-        Console.WriteLine();
-        AddVidCom();
-        Console.WriteLine("**************************************************");
-        Console.WriteLine();
+        // To use a string format when displaying Video data: video, author/poster/video length 
+        return $"VIDEO: {_title}\nPOSTED BY: {_author}\nVIDEO LENGTH (in seconds): {_length}";
     }
 }
