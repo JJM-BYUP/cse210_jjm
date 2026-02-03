@@ -5,9 +5,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        // ClassAssignment student1 = new ClassAssignment();
-        // student1._studentName = "Joe Shmoe";
-        // student1._topic = "Multiplication";
+        //ClassAssignment student1 = new ClassAssignment();
         
         Console.WriteLine("Hello World!");
     }
