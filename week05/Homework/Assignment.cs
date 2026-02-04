@@ -2,8 +2,15 @@ using System;
 
 public class Assignment
 {
-    protected string _studentName = "";
-    protected string _topic = "";
+    protected string _studentName;
+    protected string _topic;
+
+    // Constructor
+    public Assignment(string studentName, string topic)
+    {
+        _studentName = studentName;
+        _topic = topic;
+    }
 
     // Getters/Setters
     public string StudentName
