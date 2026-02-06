@@ -58,7 +58,7 @@ public class Activity
         Console.WriteLine(_description);
         Console.WriteLine();
         Console.Write($"How long would you like this activity to run? (In seconds)  ");
-        _duration = Int32.Parse(Console.ReadLine());
+        _duration = int.Parse(Console.ReadLine());
         Console.WriteLine();
     }
 

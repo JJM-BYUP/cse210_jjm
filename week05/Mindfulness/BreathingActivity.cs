@@ -4,9 +4,8 @@ using System.ComponentModel;
 public class BreathingActivity : Activity
 {
     // Constructor
-    public BreathingActivity()
+    public BreathingActivity() : base()
     {
-
     }
     
     // Methods
