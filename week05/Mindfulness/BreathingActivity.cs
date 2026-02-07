@@ -13,24 +13,24 @@ public class BreathingActivity : Activity
     {
         Console.WriteLine("Here we go!");
         Console.WriteLine();
-        int firstCountDown = 2;
-        ShowDots(firstCountDown);
+        ShowDots(2);
         Console.WriteLine();
         Console.WriteLine();
 
+        // Set DateTime values
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(_duration);
 
         do
         {
+            // Breath in...
             Console.Write($"Deep breath in . . . .  ");
-            int breathIn = 7;
-            ShowCountDown(breathIn);
+            ShowCountDown(7);
             Console.WriteLine();
 
+            // Breath out...
             Console.Write($"Slow breath out . . . .  ");
-            int breathOut = 9;
-            ShowCountDown(breathOut);
+            ShowCountDown(9);
             Console.WriteLine();
             Console.WriteLine();
         } while (DateTime.Now <= endTime);

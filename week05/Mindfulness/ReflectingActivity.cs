@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Microsoft.Win32.SafeHandles;
 
 public class ReflectingActivity : Activity
 {
@@ -37,33 +39,69 @@ public class ReflectingActivity : Activity
     // Constructor
     public ReflectingActivity() : base()
     {
-        _prompts = null;
-        _questions = null;
     }
 
     // Methods
     public void Run()
     {
+        Console.WriteLine("Here we go!");
+        Console.WriteLine();
+        ShowDots(2);
+        Console.WriteLine();
+        Console.WriteLine();
+        Console.Clear();
 
+        // Set DateTime values
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+
+        // Random Prompt section
+        Console.WriteLine("Consider the following prompt");
+        Console.WriteLine();
+        
+        DisplayRandomPrompt();
+        Console.WriteLine();
+        Console.WriteLine("When you have an experience in mind, press Enter. . .");
+        Console.ReadLine();
+        
+        Console.WriteLine("Now think about how each of the questions relates to this experience.");
+        Console.Write("Questions will begin in: ");
+        ShowCountDown(5);
+        Console.Clear();
+
+        // Repeat Random Questions with Spinner until _duration is done
+        while (DateTime.Now <= endTime)
+        {
+            DisplayRandomQuestions();
+            ShowSpinner(5);
+        }      
     }
 
     public string GetRandomPrompt()
     {
-        return "";
+        Random indexRandom = new Random();
+        int indexNum = indexRandom.Next(0, _prompts.Count());
+        string newPrompt = _prompts[indexNum];
+        return newPrompt;
     }
 
     public string GetRandomQuestion()
     {
-        return "";
+        Random indexRandom = new Random();
+        int indexNum = indexRandom.Next(0, _questions.Count());
+        string newQuestion = _questions[indexNum];
+        return newQuestion;
     }
 
     public void DisplayRandomPrompt()
     {
-
+        string newPrompt = GetRandomPrompt();
+        Console.WriteLine($"  --- {newPrompt} ---");
     }
     
-    public void DisplayQuestions()
+    public void DisplayRandomQuestions()
     {
-        
+        string newQuestion = GetRandomQuestion();
+        Console.WriteLine($"> {newQuestion}  ");
     }
 }

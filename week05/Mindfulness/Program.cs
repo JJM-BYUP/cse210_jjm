@@ -8,6 +8,7 @@ class Program
         int choice = 0;
         do
         {
+            Console.Clear();
             // Create a selection menu
             Console.WriteLine("Mindfulness Program Menu Options:");
             Console.WriteLine("     1. Breathing Activity");
@@ -18,15 +19,17 @@ class Program
 
             // Get user input
             choice = int.Parse(Console.ReadLine());
+            Console.Clear();
 
-            switch(choice)
+            switch (choice)
             {
                 case 1:
                     // Breathing Activity
                     BreathingActivity breathing = new BreathingActivity();
                     breathing.SetName("Breathing Activity");
-                    breathing.SetDescription("This activity will help you relax and feel calm by helping you focus on the rhythm of your breathing");
+                    breathing.SetDescription("This activity will help you relax and feel calm\nby helping you focus on the rhythm of your breathing");
                     breathing.DisplayStartingMessage();
+                    Console.Clear();
                     breathing.Run();
                     breathing.DisplayEndingMessage();
                     break;
@@ -35,7 +38,8 @@ class Program
                     // Reflection Activity
                     ReflectingActivity reflection = new ReflectingActivity();
                     reflection.SetName("Reflection Activity");
-                    reflection.SetDescription("This activity will help you see the ");
+                    //Fix this!!
+                    reflection.SetDescription("This activity will help you think deeply about experiences in your life\nwhere you were successful or demonstrated strength.");
                     reflection.DisplayStartingMessage();
                     reflection.Run();
                     reflection.DisplayEndingMessage();
@@ -50,15 +54,13 @@ class Program
                     listing.Run();
                     listing.DisplayEndingMessage();
                     break;
-                    
+
                 case 4:
                     // Quit
                     break;
-
             }
 
-
         } while (choice != 4);
-        
+
     }
 }

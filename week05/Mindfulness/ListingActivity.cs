@@ -23,26 +23,53 @@ public class ListingActivity : Activity
     // Constructor
     public ListingActivity() : base()
     {
-        _count = 0;
-        _prompts = null;
     }
 
     // Methods
     public void Run()
     {
+        Console.WriteLine("Here we go!");
+        Console.WriteLine();
+        ShowDots(2);
+        Console.WriteLine();
+        Console.WriteLine();
 
+        Console.WriteLine("List as many things as you can relating to the following prompt:");
+        GetRandomPrompt();
+        Console.Write("Time will start in: ");
+        ShowCountDown(5);
+        Console.WriteLine();
+
+        // User input section
+        List<string> userInput = GetListFromUser();
+        _count = userInput.Count();
+        Console.WriteLine($"You listed {_count} items!");
+        Console.WriteLine();
     }
 
     public void GetRandomPrompt()
     {
-        Random indexNum = new Random();
-        int indexRandom = indexNum.Next(0, _prompts.Count);
-        string newPrompt = _prompts[indexRandom];
-        Console.WriteLine(newPrompt);
+        Random indexRandom = new Random();
+        int indexNum = indexRandom.Next(0, _prompts.Count);
+        string newPrompt = _prompts[indexNum];
+        Console.WriteLine($"  --- {newPrompt} ---");
     }
     
     public List<string> GetListFromUser()
     {
-        return null;
+        List<string> userInput = new List<string>();
+
+        // Set DateTime values
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+        
+        while (DateTime.Now <= endTime)
+        {
+            Console.Write("> ");
+            string response = Console.ReadLine();
+            userInput.Add(response);
+        }
+
+        return userInput;
     }
 }

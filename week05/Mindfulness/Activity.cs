@@ -70,6 +70,7 @@ public class Activity
         int spinSeconds = 2;
         ShowSpinner(spinSeconds);
         Console.WriteLine($"You have finished {_duration} seconds of the {_name}.");
+        Thread.Sleep(2000);
         Console.WriteLine();
     }
 
