@@ -57,20 +57,18 @@ public class Activity
         Console.WriteLine();
         Console.WriteLine(_description);
         Console.WriteLine();
-        Console.Write($"How long would you like this activity to run? (In seconds)  ");
+        Console.Write($"How long would you like this activity to run (in seconds)?  ");
         _duration = int.Parse(Console.ReadLine());
         Console.WriteLine();
     }
 
     public void DisplayEndingMessage()
     {
-        Console.WriteLine();
         Console.WriteLine("Great job!");
+        ShowSpinner(2);
         Console.WriteLine();
-        int spinSeconds = 2;
-        ShowSpinner(spinSeconds);
         Console.WriteLine($"You have finished {_duration} seconds of the {_name}.");
-        Thread.Sleep(2000);
+        ShowSpinner(2);
         Console.WriteLine();
     }
 

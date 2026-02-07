@@ -29,9 +29,7 @@ public class ListingActivity : Activity
     public void Run()
     {
         Console.WriteLine("Here we go!");
-        Console.WriteLine();
-        ShowDots(2);
-        Console.WriteLine();
+        ShowSpinner(2);
         Console.WriteLine();
 
         Console.WriteLine("List as many things as you can relating to the following prompt:");

@@ -45,36 +45,27 @@ public class ReflectingActivity : Activity
     public void Run()
     {
         Console.WriteLine("Here we go!");
+        ShowSpinner(2);
         Console.WriteLine();
-        ShowDots(2);
-        Console.WriteLine();
-        Console.WriteLine();
-        Console.Clear();
-
-        // Set DateTime values
-        DateTime startTime = DateTime.Now;
-        DateTime endTime = startTime.AddSeconds(_duration);
 
         // Random Prompt section
-        Console.WriteLine("Consider the following prompt");
-        Console.WriteLine();
-        
         DisplayRandomPrompt();
-        Console.WriteLine();
-        Console.WriteLine("When you have an experience in mind, press Enter. . .");
-        Console.ReadLine();
         
         Console.WriteLine("Now think about how each of the questions relates to this experience.");
         Console.Write("Questions will begin in: ");
         ShowCountDown(5);
         Console.Clear();
 
+        // Set DateTime values
+        DateTime startTime = DateTime.Now;
+        DateTime endTime = startTime.AddSeconds(_duration);
+
         // Repeat Random Questions with Spinner until _duration is done
         while (DateTime.Now <= endTime)
         {
             DisplayRandomQuestions();
-            ShowSpinner(5);
-        }      
+        }
+        Console.WriteLine(); 
     }
 
     public string GetRandomPrompt()
@@ -95,13 +86,23 @@ public class ReflectingActivity : Activity
 
     public void DisplayRandomPrompt()
     {
+        Console.WriteLine("Consider the following prompt");
+        Console.WriteLine();
+ 
         string newPrompt = GetRandomPrompt();
         Console.WriteLine($"  --- {newPrompt} ---");
+
+        Console.WriteLine();
+        Console.Write("When you have an experience in mind, press Enter. . .");
+        Console.ReadLine();
+        Console.WriteLine();
     }
     
     public void DisplayRandomQuestions()
     {
         string newQuestion = GetRandomQuestion();
-        Console.WriteLine($"> {newQuestion}  ");
+        Console.Write($"> {newQuestion}  ");
+        ShowSpinner(5);
+        Console.WriteLine();
     }
 }

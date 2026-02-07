@@ -12,16 +12,18 @@ public class BreathingActivity : Activity
     public void Run()
     {
         Console.WriteLine("Here we go!");
+        ShowSpinner(2);
         Console.WriteLine();
-        ShowDots(2);
-        Console.WriteLine();
+        Console.WriteLine("In this activity you will breath in for 7 seconds and breath out for 9 seconds.");
+        Console.WriteLine("Follow the countdown in your head as you breath in and out.  Get ready...");
+        ShowSpinner(5);
         Console.WriteLine();
 
         // Set DateTime values
         DateTime startTime = DateTime.Now;
         DateTime endTime = startTime.AddSeconds(_duration);
 
-        do
+        while (DateTime.Now <= endTime)
         {
             // Breath in...
             Console.Write($"Deep breath in . . . .  ");
@@ -32,7 +34,7 @@ public class BreathingActivity : Activity
             Console.Write($"Slow breath out . . . .  ");
             ShowCountDown(9);
             Console.WriteLine();
-            Console.WriteLine();
-        } while (DateTime.Now <= endTime);
+        }
+        Console.WriteLine();
     }
 }
