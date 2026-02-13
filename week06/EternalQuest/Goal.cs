@@ -2,12 +2,12 @@ using System;
 
 public abstract class Goal
 {
-    private string _shortName;
-    private string _description;
-    private string _points;
+    protected string _shortName;
+    protected string _description;
+    protected int _points;
 
     // Constructor
-    public Goal(string name, string description, string points)
+    public Goal(string name, string description, int points)
     {
         _shortName = name;
         _description = description;
@@ -35,12 +35,12 @@ public abstract class Goal
         _description = description;
     }
 
-    public string GetPoints()
+    public int GetPoints()
     {
         return _points;
     }
 
-    public void SetPoints(string points)
+    public void SetPoints(int points)
     {
         _points = points;
     }
@@ -52,7 +52,9 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        return "";
+        string checkBox = "[ ]";
+        
+        return $"{checkBox} {_shortName} ({_description})";
     }
 
     public abstract string GetStringRepresentation();

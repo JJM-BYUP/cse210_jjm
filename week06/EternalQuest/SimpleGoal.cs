@@ -5,7 +5,7 @@ public class SimpleGoal : Goal
     private bool _isComplete;
 
     // Constructor
-    public SimpleGoal(string name, string description, string points, bool isComplete) : base(name, description, points)
+    public SimpleGoal(string name, string description, int points, bool isComplete) : base(name, description, points)
     {
         _isComplete = isComplete;
     }
@@ -24,17 +24,26 @@ public class SimpleGoal : Goal
     // Methods
     public override void RecordEvent()
     {
-
+        // Check the completed box
+        // return the point value associated with recording the event
     }
 
     public override bool IsComplete()
     {
-        return false;
+        // Return true if goal is completed
+        if (_isComplete == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        } 
     }
 
     public override string GetStringRepresentation()
     {
-        return "";
+        return $"SimpleGoal:{_shortName}~{_description}~{_points}~{_isComplete}";
     }
     
 }
