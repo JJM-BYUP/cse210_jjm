@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 class Program
 {
@@ -12,5 +13,15 @@ class Program
 
         ChecklistGoal goal = new ChecklistGoal("Read Scriptures", "Read 10 minutes 3x/week", 50, 0, 3, 200);
         Console.WriteLine(goal.GetDetailsString());
+        Console.WriteLine(goal.GetStringRepresentation());
+
+        Console.WriteLine();
+
+        List<Goal> goals = new List<Goal>();
+        GoalManager newGoal = new GoalManager(goals, 0);
+        newGoal.Start();
+
+        
+
     }
 }

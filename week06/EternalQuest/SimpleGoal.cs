@@ -2,23 +2,19 @@ using System;
 
 public class SimpleGoal : Goal
 {
-    private bool _isComplete;
+    private bool _isCompleted;
 
     // Constructor
-    public SimpleGoal(string name, string description, int points, bool isComplete) : base(name, description, points)
+    public SimpleGoal(string name, string description, int points, bool isCompleted) : base(name, description, points)
     {
-        _isComplete = isComplete;
+        _isCompleted = isCompleted;
     }
 
     // Getters/Setters
-    public bool GetIsComplete()
+    public bool IsCompleted
     {
-        return false;
-    }
-
-    public void SetIsComplete(bool isComplete)
-    {
-        _isComplete = isComplete;
+        get { return false; }
+        set { _isCompleted = value; }
     }
 
     // Methods
@@ -31,7 +27,7 @@ public class SimpleGoal : Goal
     public override bool IsComplete()
     {
         // Return true if goal is completed
-        if (_isComplete == true)
+        if (_isCompleted == true)
         {
             return true;
         }
@@ -43,7 +39,7 @@ public class SimpleGoal : Goal
 
     public override string GetStringRepresentation()
     {
-        return $"SimpleGoal:{_shortName}~{_description}~{_points}~{_isComplete}";
+        return $"SimpleGoal:{_shortName}~{_description}~{_points}~{_isCompleted}";
     }
     
 }

@@ -15,34 +15,22 @@ public abstract class Goal
     }
 
     // Getters/Setters
-    public string GetName()
+    public string ShortName
     {
-        return _shortName;
+        get { return _shortName; }
+        set { _shortName = value; }
     }
 
-    public void SetName(string name)
+    public string Description
     {
-        _shortName = name;
+        get {return _description;}
+        set { _description = value; }
     }
 
-    public string GetDescription()
+    public int Points
     {
-        return _description;
-    }
-
-    public void SetDescription(string description)
-    {
-        _description = description;
-    }
-
-    public int GetPoints()
-    {
-        return _points;
-    }
-
-    public void SetPoints(int points)
-    {
-        _points = points;
+        get { return _points; }
+        set { _points = value; }
     }
 
     // Methods
