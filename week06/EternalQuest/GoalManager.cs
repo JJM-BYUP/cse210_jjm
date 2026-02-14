@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
 
@@ -48,24 +49,30 @@ public class GoalManager
             Console.WriteLine("     6. Quit");
             Console.Write("What would you like to do? Select a number from the menu: ");
             menuChoice = Console.ReadLine();
+            Console.WriteLine();
 
             // Use switch case for user choice
             switch (menuChoice)
             {
                 case "1":
                     CreateGoal();
+                    Console.WriteLine();
                     break;
                 case "2":
                     ListGoalDetails();
+                    Console.WriteLine();
                     break;
                 case "3":
                     SaveGoals();
+                    Console.WriteLine();
                     break;
                 case "4":
                     LoadGoals();
+                    Console.WriteLine();
                     break;
                 case "5":
                     RecordEvent();
+                    Console.WriteLine();
                     break;
                 case "6":
                     menuLoop = false;
@@ -137,7 +144,6 @@ public class GoalManager
                 int points = Convert.ToInt32(pointsInput);
                 SimpleGoal simpleGoal = new SimpleGoal(name, description, points, false);
                 _goals.Add(simpleGoal);
-                Console.WriteLine();
                 break;
             case "2":
                 // For Eternal Goal
@@ -150,7 +156,6 @@ public class GoalManager
                 points = Convert.ToInt32(pointsInput);
                 EternalGoal eternalGoal = new EternalGoal(name, description, points);
                 _goals.Add(eternalGoal);
-                Console.WriteLine();
                 break;
             case "3":
                 // For Checklist Goal
@@ -169,11 +174,9 @@ public class GoalManager
                 int bonus = Convert.ToInt32(bonusInput);
                 ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, 0, target, bonus);
                 _goals.Add(checklistGoal);
-                Console.WriteLine();
                 break;
             default:
                 Console.WriteLine("Sorry! You must pick a number between 1 and 3");
-                Console.WriteLine();
                 break;
         }
     }
@@ -187,7 +190,7 @@ public class GoalManager
         // Display list of goal names
         ListGoalNames();
 
-        // Selection section
+        // Choose completed goal
         Console.Write("Which goal did you finish? ");
         int completed = Convert.ToInt32(Console.ReadLine());
 
@@ -203,29 +206,34 @@ public class GoalManager
                 gNum.RecordEvent();
                 points = gNum.Points;
                 _score = _score + points;
-                // didn't add bonus points
-                // change the call to IsComplete() to RecordEvent()
             }
         }
 
         // Encouragement statements with points info
-        // Add point variables to these print statements
         Console.WriteLine($"Awesome job!! You have earned {points} points!");
         Console.WriteLine($"You've now made it up to {_score} points!");
-        Console.WriteLine();
     }
 
     public void SaveGoals()
     {
+        // Get filename
+        Console.Write("What is the name of the file you'd like to save your goals to? ");
+        string fileName = Console.ReadLine();
+
         // Saves the list of goals to a file
         List<Goal> goals = _goals;
+        int points = _score;
 
-        foreach (Goal goal in goals)
+        using (StreamWriter goalFile = new StreamWriter(fileName))
         {
-            string stringRep = goal.GetStringRepresentation();
-            Console.WriteLine(stringRep);
-        }        
+            goalFile.WriteLine(points);  // Save the current score
 
+            foreach (Goal goal in goals)
+            {
+                string stringRep = goal.GetStringRepresentation();
+                goalFile.WriteLine(stringRep);
+            }
+        }
     }
     
     public void LoadGoals()

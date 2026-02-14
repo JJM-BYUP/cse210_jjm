@@ -1,0 +1,4 @@
+400
+ChecklistGoal:Stretch~Stretch 15min 2x/week~300~300~2~2
+SimpleGoal:Deep breathing~Breath deeply 5x when stressed~20~True
+EternalGoal:Pray~Pray every morning~50

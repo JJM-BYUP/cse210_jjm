@@ -8,8 +8,5 @@ class Program
         List<Goal> goals = new List<Goal>();
         GoalManager newGoal = new GoalManager(goals, 0);
         newGoal.Start();
-        
-        
-
     }
 }
