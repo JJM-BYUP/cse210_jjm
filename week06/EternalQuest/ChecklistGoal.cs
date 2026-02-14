@@ -59,9 +59,7 @@ public class ChecklistGoal : Goal
 
             // Add bonus points for when the target number has been reached
             if (_amountCompleted == _target)
-            {
-                // Mark goal complete when it hits the target number
-                checkBox = "[X]";
+            {                
                 _points = _bonus;
                 Console.WriteLine("You got the bonus!!");
             }
@@ -70,18 +68,23 @@ public class ChecklistGoal : Goal
 
     public override bool IsComplete()
     {
-        bool isComplete = true;
-        return isComplete;
+        if (_amountCompleted == _target)
+        {
+            // Mark goal complete when it hits the target number
+            _checkBox = "[X]";
+        }
+        return true;
     }
 
     public override string GetDetailsString()
     {
         
-        return $"{checkBox} {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
+        return $"{_checkBox} {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
     }
 
     public override string GetStringRepresentation()
     {
+        bool isComplete = IsComplete();
         return $"ChecklistGoal:{_shortName}~{_description}~{_points}~{_bonus}~{_amountCompleted}~{_target}";
     }
 

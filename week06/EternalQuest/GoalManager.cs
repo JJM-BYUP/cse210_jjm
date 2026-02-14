@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Formats.Asn1;
 using System.IO;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.CompilerServices;
@@ -34,7 +37,7 @@ public class GoalManager
     {
         // This is "main" function: called by Program.cs and then runs the menu loop
         bool menuLoop = true;
-        string menuChoice = "0";
+        string menuChoice;
 
         do
         {
@@ -84,7 +87,7 @@ public class GoalManager
             }
 
         } while (menuLoop);
-        
+
     }
 
     public void DisplayPlayerInfo()
@@ -98,12 +101,12 @@ public class GoalManager
         //Lists the names of each of the goals
         List<Goal> goals = _goals;
         int i = 1;
-        foreach(Goal goal in goals)
+        foreach (Goal goal in goals)
         {
-            string name = goal.GetShortName();
+            string name = goal.ShortName;
             Console.WriteLine($"{i}. {name}");
             i++;
-        }        
+        }
     }
 
     public void ListGoalDetails()
@@ -111,13 +114,14 @@ public class GoalManager
         // Lists the details of each goal (including the checkbox of whether it's complete)
         List<Goal> goals = _goals;
         int i = 1;
- 
+
         foreach (Goal goal in goals)
         {
+            goal.IsComplete();
             string details = goal.GetDetailsString();
             Console.WriteLine($"{i}. {details}");
             i++;
-        }        
+        }
     }
 
     public void CreateGoal()
@@ -131,7 +135,6 @@ public class GoalManager
         string goalChoice = Console.ReadLine();
 
         // Creates the goal and adds it to the list
-        // Use switch case to handle user input// Asks the user for the information about a new goal
         switch (goalChoice)
         {
             case "1":
@@ -226,7 +229,7 @@ public class GoalManager
 
         using (StreamWriter goalFile = new StreamWriter(fileName))
         {
-            goalFile.WriteLine(points);  // Save the current score
+            goalFile.WriteLine(points);  // Saves the current score
 
             foreach (Goal goal in goals)
             {
@@ -235,9 +238,76 @@ public class GoalManager
             }
         }
     }
-    
+
     public void LoadGoals()
     {
-        // Loads the list of goals fromm a file
+        // Get filename to use to retrieve information
+        Console.Write("What is the name of your goal file? ");
+        string fileName = Console.ReadLine();
+
+        // Get score info from 1st line and remove it from list
+        string[] goalLines = System.IO.File.ReadAllLines(fileName);
+        List<string> goalInfo = new List<string>(goalLines);
+
+        string score = goalInfo[0];
+        _score = Convert.ToInt32(score);
+        goalInfo.RemoveAt(0);
+
+        // Use StreamReader to read lines and split using ':' and '~'
+        _goals = new List<Goal>();
+
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string line;
+            reader.ReadLine();
+
+            while ((line = reader.ReadLine()) != null)
+            {
+                string[] parts = line.Split(':','~');
+
+                if (parts.Length == 4)
+                {
+                    if (int.TryParse(parts[3], out int points))
+                    {
+                        string shortName = parts[1];
+                        string description = parts[2];
+                        EternalGoal eternal = new EternalGoal(shortName, description, points);
+                        _goals.Add(eternal);
+                    }
+                }
+                else if (parts.Length == 5)
+                {
+                    if (int.TryParse(parts[3], out int points))
+                    {
+                        string shortName = parts[1];
+                        string description = parts[2];
+                        string complete = parts[4];
+                        bool isComplete = bool.Parse(complete);
+                        SimpleGoal simple = new SimpleGoal(shortName, description, points, isComplete);
+                        _goals.Add(simple);
+                    }                       
+                }
+                else if (parts.Length == 7)
+                {
+                    if (int.TryParse(parts[3], out int points))
+                    {
+                        string shortName = parts[1];
+                        string description = parts[2];
+                        string sAmountCompleted = parts[5];
+                        int amountCompleted = Convert.ToInt32(sAmountCompleted);
+                        string sTarget = parts[6];
+                        int target = Convert.ToInt32(sTarget);
+                        string sBonus = parts[4];
+                        int bonus = Convert.ToInt32(sBonus);
+                        ChecklistGoal checklist = new ChecklistGoal(shortName, description, points, amountCompleted, target, bonus);
+                        _goals.Add(checklist);
+                    }                                            
+                }
+                else
+                {
+                    Console.WriteLine("Oops! That didn't work!");
+                }
+            }
+        }
     }
 }

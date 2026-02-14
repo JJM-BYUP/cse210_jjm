@@ -5,7 +5,7 @@ public abstract class Goal
     protected string _shortName;
     protected string _description;
     protected int _points = 0;
-    protected string checkBox = "[ ]";
+    protected string _checkBox = "[ ]";
 
     // Constructor
     public Goal(string name, string description, int points)
@@ -16,16 +16,11 @@ public abstract class Goal
     }
 
     // Getters/Setters
-    public string GetShortName()
+    public string ShortName
     {
-        return _shortName;
+        get { return _description; }
+        set { _description = value; }
     }
-
-    public void SetShortName(string name)
-    {
-        _shortName = name;
-    }
-
     public string Description
     {
         get {return _description;}
@@ -45,7 +40,7 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        return $"{checkBox} {_shortName} ({_description})";
+        return $"{_checkBox} {_shortName} ({_description})";
     }
 
     public abstract string GetStringRepresentation();

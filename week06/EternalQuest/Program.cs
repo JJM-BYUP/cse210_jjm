@@ -1,6 +1,10 @@
 using System;
 using System.Runtime.CompilerServices;
 
+/*
+    Eternal Quest program assignment
+    Author: Jennifer Merritt
+*/
 class Program
 {
     static void Main(string[] args)
