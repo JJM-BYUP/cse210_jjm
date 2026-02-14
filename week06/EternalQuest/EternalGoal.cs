@@ -10,21 +10,16 @@ public class EternalGoal : Goal
     public override void RecordEvent()
     {
         // Return the point value associated with recording the event
-        _points += _points;
+        bool completed = IsComplete();
+        if (completed == true)
+        {
+            int points = _points;
+        }
     }
 
     public override bool IsComplete()
     {
-        // Return true if goal is completed
-        // if (_isComplete == true)
-        // {
-            // return true;
-        // }
-        // else
-        // {
-           return false;
-        // } 
-
+           return true;
     }
 
     public override string GetStringRepresentation()

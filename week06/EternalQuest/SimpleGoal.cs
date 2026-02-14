@@ -3,6 +3,7 @@ using System;
 public class SimpleGoal : Goal
 {
     protected bool _isComplete;
+    //private string checkBox = "[ ]";
 
     // Constructor
     public SimpleGoal(string name, string description, int points, bool isComplete) : base(name, description, points)
@@ -24,6 +25,13 @@ public class SimpleGoal : Goal
     // Methods
     public override void RecordEvent()
     {
+        bool completed = IsComplete();
+        if (completed == true)
+        {
+            int points = _points;
+            checkBox = "[X]";
+        }
+
         // Check the completed box
         // return the point value associated with recording the event
     }
@@ -31,14 +39,7 @@ public class SimpleGoal : Goal
     public override bool IsComplete()
     {
         // Return true if goal is completed
-        if (_isComplete == true)
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        } 
     }
 
     public override string GetStringRepresentation()

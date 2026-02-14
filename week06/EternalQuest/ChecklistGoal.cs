@@ -48,15 +48,24 @@ public class ChecklistGoal : Goal
     // Methods
     public override void RecordEvent()
     {
-        // Add to number of times this goal has been completed
-        
-        // Mark goal complete when it hits the target number
+        bool finished = IsComplete();
+        if (finished == true)
+        {
+            // Add to number of times this goal has been completed
+            _amountCompleted = _amountCompleted + 1;
 
+            // Add points for each time goal has been completed
+            _points += _points;
 
-        // Add points for each time goal has been completed
+            // Mark goal complete when it hits the target number
+            checkBox = "[X]";
 
-        // Add bonus points for when the target number has been reached
-
+            // Add bonus points for when the target number has been reached
+            if (_amountCompleted == _target)
+            {
+                _bonus = _bonus + _points;
+            }
+        }
     }
 
     public override bool IsComplete()
@@ -65,19 +74,12 @@ public class ChecklistGoal : Goal
         // Return true if goal is completed
 
         // Return true if target has been reached
-        if (_amountCompleted == _target)
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public override string GetDetailsString()
     {
-        string checkBox = "[ ]";
+        
         return $"{checkBox} {_shortName} ({_description}) -- Currently completed: {_amountCompleted}/{_target}";
     }
 

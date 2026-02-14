@@ -4,7 +4,8 @@ public abstract class Goal
 {
     protected string _shortName;
     protected string _description;
-    protected int _points;
+    protected int _points = 0;
+    protected string checkBox = "[ ]";
 
     // Constructor
     public Goal(string name, string description, int points)
@@ -44,8 +45,6 @@ public abstract class Goal
 
     public virtual string GetDetailsString()
     {
-        string checkBox = "[ ]";
-        
         return $"{checkBox} {_shortName} ({_description})";
     }
 

@@ -62,6 +62,7 @@ public class GoalManager
                 case "4":
                     break;
                 case "5":
+                    RecordEvent();
                     break;
                 case "6":
                     menuLoop = false;
@@ -80,7 +81,7 @@ public class GoalManager
     {
         // Displays the player's current score
 
-        Console.WriteLine("You have -- points");
+        Console.WriteLine($"You have {_score} points");
     }
 
     public void ListGoalNames()
@@ -184,14 +185,29 @@ public class GoalManager
         // Display list of goal names
         ListGoalNames();
         Console.Write("Which goal did you finish? ");
-        string finished = Console.ReadLine();
+        int finished = Convert.ToInt32(Console.ReadLine());
 
-        // Selection section - Compare list of names to goal names in list to find goal type
+        // Selection section - Compare list of names to goal names in list to find goal type?
+        // FIX THIS SECTION!!!!!
+        List<Goal> goals = _goals;
+        int points = 0;
+        for (int i = 0; i < goals.Count(); i++)
+        {
+            Goal gNum = goals[i];
+            string goalNum = Convert.ToString(gNum);
+            if ((finished - 1) == i)
+            {
+                gNum.IsComplete();
+                points = gNum.Points;
+                _score = _score + points;
+            }
+        }
 
         // Encouragement statements with points info
         // Add point variables to these print statements
-        Console.WriteLine("Awesome job!! You have earned __ points!");
-        Console.WriteLine("You've now made it to __ points!");
+        Console.WriteLine($"Awesome job!! You have earned {points} points!");
+        Console.WriteLine($"You've now made it to {_score} points!");
+        Console.WriteLine();
     }
 
     public void SaveGoals()
