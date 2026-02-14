@@ -54,27 +54,24 @@ public class ChecklistGoal : Goal
             // Add to number of times this goal has been completed
             _amountCompleted = _amountCompleted + 1;
 
-            // Add points for each time goal has been completed
-            _points += _points;
-
-            // Mark goal complete when it hits the target number
-            checkBox = "[X]";
+            // Set points for each time goal has been completed
+            int points = _points;
 
             // Add bonus points for when the target number has been reached
             if (_amountCompleted == _target)
             {
-                _bonus = _bonus + _points;
+                // Mark goal complete when it hits the target number
+                checkBox = "[X]";
+                _points = _bonus;
+                Console.WriteLine("You got the bonus!!");
             }
         }
     }
 
     public override bool IsComplete()
     {
-        // MIGHT NEED TO EVALUATE THE IF ELSE STRUCTURE
-        // Return true if goal is completed
-
-        // Return true if target has been reached
-            return true;
+        bool isComplete = true;
+        return isComplete;
     }
 
     public override string GetDetailsString()

@@ -56,10 +56,13 @@ public class GoalManager
                     CreateGoal();
                     break;
                 case "2":
+                    ListGoalDetails();
                     break;
                 case "3":
+                    SaveGoals();
                     break;
                 case "4":
+                    LoadGoals();
                     break;
                 case "5":
                     RecordEvent();
@@ -80,7 +83,6 @@ public class GoalManager
     public void DisplayPlayerInfo()
     {
         // Displays the player's current score
-
         Console.WriteLine($"You have {_score} points");
     }
 
@@ -184,29 +186,32 @@ public class GoalManager
 
         // Display list of goal names
         ListGoalNames();
-        Console.Write("Which goal did you finish? ");
-        int finished = Convert.ToInt32(Console.ReadLine());
 
-        // Selection section - Compare list of names to goal names in list to find goal type?
-        // FIX THIS SECTION!!!!!
+        // Selection section
+        Console.Write("Which goal did you finish? ");
+        int completed = Convert.ToInt32(Console.ReadLine());
+
+        // Compare choice to list index number
         List<Goal> goals = _goals;
         int points = 0;
         for (int i = 0; i < goals.Count(); i++)
         {
             Goal gNum = goals[i];
-            string goalNum = Convert.ToString(gNum);
-            if ((finished - 1) == i)
+            if ((completed - 1) == i)
             {
-                gNum.IsComplete();
+                bool isComplete = gNum.IsComplete();
+                gNum.RecordEvent();
                 points = gNum.Points;
                 _score = _score + points;
+                // didn't add bonus points
+                // change the call to IsComplete() to RecordEvent()
             }
         }
 
         // Encouragement statements with points info
         // Add point variables to these print statements
         Console.WriteLine($"Awesome job!! You have earned {points} points!");
-        Console.WriteLine($"You've now made it to {_score} points!");
+        Console.WriteLine($"You've now made it up to {_score} points!");
         Console.WriteLine();
     }
 
