@@ -15,10 +15,14 @@ public abstract class Goal
     }
 
     // Getters/Setters
-    public string ShortName
+    public string GetShortName()
     {
-        get { return _shortName; }
-        set { _shortName = value; }
+        return _shortName;
+    }
+
+    public void SetShortName(string name)
+    {
+        _shortName = name;
     }
 
     public string Description

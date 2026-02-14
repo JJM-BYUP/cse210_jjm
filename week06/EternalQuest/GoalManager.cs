@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
-    private int _score;
+    private int _score = 0;
 
     // Constructor
     public GoalManager(List<Goal> goals, int score)
@@ -83,16 +83,31 @@ public class GoalManager
         Console.WriteLine("You have -- points");
     }
 
-    public static void ListGoalNames()
+    public void ListGoalNames()
     {
         //Lists the names of each of the goals
-        
-    
+        List<Goal> goals = _goals;
+        int i = 1;
+        foreach(Goal goal in goals)
+        {
+            string name = goal.GetShortName();
+            Console.WriteLine($"{i}. {name}");
+            i++;
+        }        
     }
 
     public void ListGoalDetails()
     {
         // Lists the details of each goal (including the checkbox of whether it's complete)
+        List<Goal> goals = _goals;
+        int i = 1;
+ 
+        foreach (Goal goal in goals)
+        {
+            string details = goal.GetDetailsString();
+            Console.WriteLine($"{i}. {details}");
+            i++;
+        }        
     }
 
     public void CreateGoal()
@@ -119,6 +134,7 @@ public class GoalManager
                 int points = Convert.ToInt32(pointsInput);
                 SimpleGoal simpleGoal = new SimpleGoal(name, description, points, false);
                 _goals.Add(simpleGoal);
+                Console.WriteLine();
                 break;
             case "2":
                 // For Eternal Goal
@@ -131,6 +147,7 @@ public class GoalManager
                 points = Convert.ToInt32(pointsInput);
                 EternalGoal eternalGoal = new EternalGoal(name, description, points);
                 _goals.Add(eternalGoal);
+                Console.WriteLine();
                 break;
             case "3":
                 // For Checklist Goal
@@ -149,6 +166,7 @@ public class GoalManager
                 int bonus = Convert.ToInt32(bonusInput);
                 ChecklistGoal checklistGoal = new ChecklistGoal(name, description, points, 0, target, bonus);
                 _goals.Add(checklistGoal);
+                Console.WriteLine();
                 break;
             default:
                 Console.WriteLine("Sorry! You must pick a number between 1 and 3");
@@ -159,13 +177,16 @@ public class GoalManager
 
     public void RecordEvent()
     {
-        // Asks the user which goal they have dome and then records the event by calling the 
+        // Asks the user which goal they have done and then records the event by calling the 
         // RecordEvent method on that goal
         Console.WriteLine("The Goals Are:");
 
-        // Loop section to display list
+        // Display list of goal names
+        ListGoalNames();
+        Console.Write("Which goal did you finish? ");
+        string finished = Console.ReadLine();
 
-        // Selection section
+        // Selection section - Compare list of names to goal names in list to find goal type
 
         // Encouragement statements with points info
         // Add point variables to these print statements
@@ -176,6 +197,14 @@ public class GoalManager
     public void SaveGoals()
     {
         // Saves the list of goals to a file
+        List<Goal> goals = _goals;
+
+        foreach (Goal goal in goals)
+        {
+            string stringRep = goal.GetStringRepresentation();
+            Console.WriteLine(stringRep);
+        }        
+
     }
     
     public void LoadGoals()
