@@ -2,10 +2,29 @@ using System;
 
 public class StationaryCycling : Activity
 {
-    public StationaryCycling(double min, double distance) : base(min, distance)
+    private double _distance;
+    private double _speed;
+
+    // Constructor
+    public StationaryCycling(double min, double distance) : base(min)
     {
+        _distance = distance;
     }
 
+    // Getters/Setters
+    public double Distance
+    {
+        get { return _distance; }
+        set { _distance = value; }
+    }
+
+    public double Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+    // Methods
     public override void GetDistance() { }
 
     public override void GetSpeed()

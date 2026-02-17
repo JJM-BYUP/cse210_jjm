@@ -3,10 +3,29 @@ using System;
 
 public class Running : Activity
 {
-    public Running(double min, double miles) : base(min, miles)
+    private double _distance;
+    private double _speed;
+
+    // Constructor
+    public Running(double min, double distance) : base(min)
     {
+        _distance = distance;
     }
 
+    // Getters/Setters
+    public double Distance
+    {
+        get { return _distance; }
+        set { _distance = value; }
+    }
+
+    public double Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
+
+    // Methods
     public override void GetDistance() { }
 
     public override void GetSpeed()

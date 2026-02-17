@@ -2,10 +2,28 @@ using System;
 
 public class Swimming : Activity
 {
+    private double _distance;
+    private double _speed;
     private double _numOfLaps;
-    public Swimming(double min, double distance, double numOfLaps) : base(min, distance)
+
+    // Constructor
+    public Swimming(double min, double distance, double numOfLaps) : base(min)
     {
         _numOfLaps = numOfLaps;
+        _distance = distance;
+    }
+
+    // Getters/Setters
+    public double Distance
+    {
+        get { return _distance; }
+        set { _distance = value; }
+    }
+
+    public double Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
     }
 
     public double NumOfLaps
@@ -13,7 +31,8 @@ public class Swimming : Activity
         get { return _numOfLaps; }
         set { _numOfLaps = value; }
     }
- 
+    
+    //Methods
     public override void GetDistance()
     {
         _distance = _numOfLaps * 50 / 1000 * 0.62;
