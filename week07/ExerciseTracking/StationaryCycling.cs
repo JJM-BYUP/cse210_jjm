@@ -2,14 +2,11 @@ using System;
 
 public class StationaryCycling : Activity
 {
-    
-
     public StationaryCycling(double min, double distance) : base(min, distance)
     {
-
     }
 
-    public override void GetDistance(){}
+    public override void GetDistance() { }
 
     public override void GetSpeed()
     {
@@ -29,6 +26,5 @@ public class StationaryCycling : Activity
         GetSpeed();
         GetPace();
         return $"{activityDate} {_activityType} ({Min} min): SPEED: {_speed:F2} mph, Distance: {_distance:F2} miles, Pace: {_pace:F2} min per mile";
-
     }
 }

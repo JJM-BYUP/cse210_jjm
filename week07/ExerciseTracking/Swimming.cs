@@ -16,7 +16,6 @@ public class Swimming : Activity
  
     public override void GetDistance()
     {
-        // Check math
         _distance = _numOfLaps * 50 / 1000 * 0.62;
     }
  
@@ -30,7 +29,6 @@ public class Swimming : Activity
         _pace = Min / Distance;
     }
  
-
     public override string GetSummary()
     {
         string activityDate = _date.ToString("dd MMM yyyy");
@@ -40,5 +38,4 @@ public class Swimming : Activity
         GetPace();
         return $"{activityDate} {_activityType} ({Min} min): NUMBER OF LAPS: {_numOfLaps}, Distance: {_distance:F2} miles, Speed: {_speed:F2} mph, Pace: {_pace:F2} min per mile";
     }
- 
 }

@@ -16,23 +16,23 @@ public abstract class Activity
         _distance = distance;
     }
 
-   
-   public double Min
+
+    public double Min
     {
         get { return _min; }
         set { _min = value; }
     }
-   
-   public double Distance
+
+    public double Distance
     {
         get { return _distance; }
         set { _distance = value; }
     }
 
-   public abstract void GetDistance();
-   public abstract void GetSpeed();
-   public abstract void GetPace();
-   public virtual string GetSummary()
+    public abstract void GetDistance();
+    public abstract void GetSpeed();
+    public abstract void GetPace();
+    public virtual string GetSummary()
     {
         string activityDate = _date.ToString("dd MMM yyyy");
         GetDistance();

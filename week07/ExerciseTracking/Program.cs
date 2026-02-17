@@ -24,6 +24,5 @@ class Program
         {
             Console.WriteLine(act.GetSummary());
         }
-
     }
 }
